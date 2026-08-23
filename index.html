@@ -787,8 +787,8 @@
       })
       .join('');
 
-    const versionHeader = total > 1
-      ? `<div class="version-heading">${escapeHtml(version.master || ('Version ' + (index + 1)))}</div>`
+    const versionHeader = version.master
+      ? `<div class="version-heading">${escapeHtml(version.master)}</div>`
       : '';
 
     const metadataItems = [];
