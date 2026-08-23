@@ -141,7 +141,6 @@
     border-top: 1px solid transparent;
   }
   .row-card.open .row-details {
-    max-height: 2400px;
     padding: 4px 16px 16px;
     border-top: 1px solid var(--border);
   }
@@ -253,23 +252,203 @@
     border-color: var(--accent-deep);
     box-shadow: 0 0 0 0.2rem rgba(122, 168, 105, 0.2);
   }
+  .add-to-cart-btn {
+    margin-top: 10px;
+    font-family: 'Lora', Georgia, serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--accent-deep);
+    background: var(--card);
+    color: var(--accent-deep);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .add-to-cart-btn:hover {
+    background: var(--accent-deep);
+    color: #fff;
+  }
+  .add-to-cart-btn.added {
+    background: var(--accent-deep);
+    color: #fff;
+    border-color: var(--accent-deep);
+  }
+  .cart-toggle-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1001;
+    font-family: 'Lora', Georgia, serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: var(--accent-deep);
+    color: #fff;
+    border: none;
+    padding: 9px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .cart-count-badge {
+    background: rgba(255,255,255,0.25);
+    padding: 1px 8px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+  }
+  .back-to-top-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 20px;
+    z-index: 1000;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: none;
+    background: var(--accent-deep);
+    color: #fff;
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .back-to-top-btn.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .back-to-top-btn:hover {
+    background: #6a9758;
+  }
+  .cart-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.25);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 1002;
+  }
+  .cart-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .cart-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 320px;
+    max-width: 85vw;
+    background: var(--card);
+    border-left: 1px solid var(--border);
+    box-shadow: -4px 0 16px rgba(0,0,0,0.12);
+    transform: translateX(100%);
+    transition: transform 0.25s ease;
+    z-index: 1003;
+    display: flex;
+    flex-direction: column;
+  }
+  .cart-panel.open {
+    transform: translateX(0);
+  }
+  .cart-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .cart-panel-header h2 {
+    font-size: 1.1rem;
+    margin: 0;
+  }
+  .cart-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    line-height: 1;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 0 4px;
+  }
+  .cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px 18px;
+  }
+  .cart-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .cart-item-main {
+    flex: 1;
+    min-width: 0;
+  }
+  .cart-item-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  .cart-item-sub {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .cart-item-remove {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 4px;
+    flex-shrink: 0;
+  }
+  .cart-item-remove:hover {
+    color: #8a3535;
+  }
+  .cart-panel-footer {
+    padding: 14px 18px;
+    border-top: 1px solid var(--border);
+  }
+  .btn-copy-cart {
+    width: 100%;
+    font-family: 'Lora', Georgia, serif;
+    font-size: 0.92rem;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: var(--accent-deep);
+    color: #fff;
+    cursor: pointer;
+  }
+  .btn-copy-cart:hover {
+    background: #6a9758;
+  }
 </style>
 </head>
 <body>
 <div class="container-narrow">
-  <h1>SnailMail's Trading List</h1>
+  <h1>My List</h1>
 
   <div class="list-description" id="listDescription">
     <!-- Edit this text to describe what this list represents -->
-    <p style="text-align: center;"> RULES + INFO <br><br>
-
-     EMAIL: Mailsnail27@gmail.com <br><br></p>
-
-    - I'm still new! Please be patient as I find my footing, and don't hesitate to correct me on anything <br>
-    - Email is currently the best place to reach me. I'm usually pretty quick to respond but please don't spam me <br>
-    - I usually use Mega (very rarely Google Drive), but I will accept links from any platform <br>
-    - My links will stay active for about a week, just let me know if you need more time <br>
-      - This means please be sure to download them for yourself, do not reuse my links <br>
+    This list tracks... describe the purpose, scope, and any context someone would need to understand what's below.
   </div>
 
   <div class="controls">
@@ -277,10 +456,10 @@
       <input type="text" id="searchInput" class="form-control" placeholder="Search show, cast, notes...">
     </div>
     <select id="sortSelect" class="form-select">
+      <option value="title-asc" selected>Show (A-Z)</option>
+      <option value="title-desc">Show (Z-A)</option>
       <option value="date-desc">Date (newest first)</option>
       <option value="date-asc">Date (oldest first)</option>
-      <option value="title-asc">Show (A-Z)</option>
-      <option value="title-desc">Show (Z-A)</option>
     </select>
   </div>
 
@@ -288,6 +467,24 @@
 
   <div class="result-count" id="resultCount"></div>
   <div id="list"></div>
+</div>
+
+<button id="cartToggleBtn" class="cart-toggle-btn" aria-label="Open cart">
+  Cart <span id="cartCount" class="cart-count-badge">0</span>
+</button>
+
+<button id="backToTopBtn" class="back-to-top-btn" aria-label="Back to top">&uarr;</button>
+
+<div id="cartOverlay" class="cart-overlay"></div>
+<div id="cartPanel" class="cart-panel">
+  <div class="cart-panel-header">
+    <h2>Cart</h2>
+    <button id="cartCloseBtn" class="cart-close-btn" aria-label="Close cart">&times;</button>
+  </div>
+  <div id="cartItems" class="cart-items"></div>
+  <div class="cart-panel-footer">
+    <button id="copyCartBtn" class="btn-copy-cart">Copy Cart</button>
+  </div>
 </div>
 
 <script>
@@ -494,9 +691,15 @@
 
   let activeCategories = new Set();
 
+  // Session values (Matinée/Evening/Unknown) still show as pills on each
+  // version, but they're excluded from the top filter bar.
+  const FILTER_EXCLUDED_TAGS = new Set(['Matinée', 'Evening', 'Unknown']);
+
   function allTags() {
     const set = new Set();
-    data.forEach(row => (row.versions || []).forEach(v => versionTags(v).forEach(t => set.add(t))));
+    data.forEach(row => (row.versions || []).forEach(v => versionTags(v).forEach(t => {
+      if (!FILTER_EXCLUDED_TAGS.has(t)) set.add(t);
+    })));
     return Array.from(set).sort();
   }
 
@@ -524,6 +727,12 @@
     const div = document.createElement('div');
     div.textContent = str;
     return div.innerHTML;
+  }
+
+  // Safe for use inside a double-quoted HTML attribute (escapeHtml alone
+  // doesn't encode quote characters, since they're safe in text content).
+  function escapeAttr(str) {
+    return escapeHtml(str).replace(/"/g, '&quot;');
   }
 
   // Versions sorted newest first
@@ -569,7 +778,7 @@
     return rows;
   }
 
-  function renderVersionDetails(version, index, total) {
+  function renderVersionDetails(rowTitle, version, index, total) {
     const tags = versionTags(version);
     const pillsHtml = tags
       .map(t => {
@@ -640,12 +849,24 @@
       </div>
     `).join('');
 
+    const cartButtonHtml = `
+      <button class="add-to-cart-btn"
+        data-title="${escapeAttr(rowTitle || '')}"
+        data-tour="${escapeAttr(version.tour || '')}"
+        data-date="${escapeAttr(version.date || '')}"
+        data-master="${escapeAttr(version.master || '')}"
+        data-av="${escapeAttr(version.audioVideo || '')}">
+        + Add to Cart
+      </button>
+    `;
+
     return `
       <div class="version-block">
         ${versionHeader}
         ${pillsHtml ? `<div class="pills-row">${pillsHtml}</div>` : ''}
         ${metadataHtml}
         ${notesHtml}
+        ${cartButtonHtml}
       </div>
     `;
   }
@@ -663,7 +884,7 @@
       card.className = 'row-card';
 
       const versionsHtml = versions
-        .map((v, i) => renderVersionDetails(v, i, versions.length))
+        .map((v, i) => renderVersionDetails(row.title, v, i, versions.length))
         .join(versions.length > 1 ? '<hr class="version-divider">' : '');
 
       card.innerHTML = `
@@ -682,8 +903,35 @@
       `;
 
       card.querySelector('.row-header').addEventListener('click', () => {
-        card.classList.toggle('open');
+        const isOpen = card.classList.toggle('open');
+        const details = card.querySelector('.row-details');
+        if (isOpen) {
+          // Measure actual content height so long/many-version cards never get clipped.
+          details.style.maxHeight = details.scrollHeight + 'px';
+        } else {
+          details.style.maxHeight = '0px';
+        }
       });
+
+      card.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          addToCart({
+            title: btn.dataset.title,
+            tour: btn.dataset.tour,
+            date: btn.dataset.date,
+            master: btn.dataset.master,
+            audioVideo: btn.dataset.av
+          });
+          btn.textContent = 'Added ✓';
+          btn.classList.add('added');
+          setTimeout(() => {
+            btn.textContent = '+ Add to Cart';
+            btn.classList.remove('added');
+          }, 1200);
+        });
+      });
+
       listEl.appendChild(card);
     });
   }
@@ -698,6 +946,113 @@
 
   searchInput.addEventListener('input', update);
   sortSelect.addEventListener('change', update);
+
+  // ---------------------------------------------------------------
+  // CART. Not persistent — resets on page reload. Lets the user collect
+  // versions they're interested in, then copy the list to the clipboard.
+  // ---------------------------------------------------------------
+  let cart = [];
+
+  const cartToggleBtn = document.getElementById('cartToggleBtn');
+  const cartCloseBtn = document.getElementById('cartCloseBtn');
+  const cartOverlay = document.getElementById('cartOverlay');
+  const cartPanel = document.getElementById('cartPanel');
+  const cartItemsEl = document.getElementById('cartItems');
+  const cartCountEl = document.getElementById('cartCount');
+  const copyCartBtn = document.getElementById('copyCartBtn');
+
+  function cartItemKey(item) {
+    return [item.title, item.master, item.date].join('||');
+  }
+
+  function addToCart(item) {
+    const key = cartItemKey(item);
+    if (cart.some(c => cartItemKey(c) === key)) return;
+    cart.push(item);
+    renderCart();
+  }
+
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    renderCart();
+  }
+
+  function renderCart() {
+    cartCountEl.textContent = cart.length;
+    if (!cart.length) {
+      cartItemsEl.innerHTML = '<div class="empty-state">Cart is empty.</div>';
+      return;
+    }
+    cartItemsEl.innerHTML = cart.map((item, idx) => `
+      <div class="cart-item">
+        <div class="cart-item-main">
+          <div class="cart-item-title">${escapeHtml(item.title || '')}</div>
+          <div class="cart-item-sub">${[item.tour, item.date].filter(Boolean).map(escapeHtml).join(' &middot; ')}</div>
+          <div class="cart-item-sub">${[item.master, item.audioVideo].filter(Boolean).map(escapeHtml).join(' &middot; ')}</div>
+        </div>
+        <button class="cart-item-remove" data-idx="${idx}" aria-label="Remove from cart">&times;</button>
+      </div>
+    `).join('');
+    cartItemsEl.querySelectorAll('.cart-item-remove').forEach(btn => {
+      btn.addEventListener('click', () => removeFromCart(parseInt(btn.dataset.idx, 10)));
+    });
+  }
+
+  function openCart() {
+    cartPanel.classList.add('open');
+    cartOverlay.classList.add('open');
+  }
+  function closeCart() {
+    cartPanel.classList.remove('open');
+    cartOverlay.classList.remove('open');
+  }
+
+  cartToggleBtn.addEventListener('click', openCart);
+  cartCloseBtn.addEventListener('click', closeCart);
+  cartOverlay.addEventListener('click', closeCart);
+
+  copyCartBtn.addEventListener('click', () => {
+    if (!cart.length) return;
+    const text = cart
+      .map(item => [item.title, item.tour, item.date, item.master, item.audioVideo]
+        .map(v => v || '—')
+        .join(' | '))
+      .join('\n');
+    const done = () => {
+      const original = copyCartBtn.textContent;
+      copyCartBtn.textContent = 'Copied!';
+      setTimeout(() => { copyCartBtn.textContent = original; }, 1500);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => {
+        copyCartBtn.textContent = 'Copy failed';
+        setTimeout(() => { copyCartBtn.textContent = 'Copy Cart'; }, 1500);
+      });
+    } else {
+      // Fallback for browsers without the async Clipboard API.
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      try { document.execCommand('copy'); done(); } catch (e) { /* no-op */ }
+      document.body.removeChild(textarea);
+    }
+  });
+
+  renderCart();
+
+  // ---------------------------------------------------------------
+  // BACK TO TOP
+  // ---------------------------------------------------------------
+  const backToTopBtn = document.getElementById('backToTopBtn');
+  window.addEventListener('scroll', () => {
+    backToTopBtn.classList.toggle('visible', window.scrollY > 300);
+  });
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 
   function loadData() {
     listEl.innerHTML = '<div class="empty-state">Loading data&hellip;</div>';
